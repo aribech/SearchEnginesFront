@@ -1,24 +1,48 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import React from 'react';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import {ThemeProvider , createMuiTheme} from "@material-ui/core/styles";
+
+import {blue, grey} from "@material-ui/core/colors";
+import { NavBar } from './Navbar.js';
+import { Footer } from './Footer';
+import { Home } from './home';
+import { SearchEngines } from './SearchEngineList';
+
+
+const theme = createMuiTheme({
+    typography: {
+        h2 : {
+            fontSize : 24,
+        }
+    },
+    palette : {
+        primary : { main: blue[500], }
+    }
+})
+
+
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+        <ThemeProvider theme={theme}>
+            <div className="App">
+            <header className="App-header">
+                
+                <NavBar></NavBar>
+                <Switch>
+                    <Route path='/' component={Home} exact />
+                    <Route path='/SearchEngines' component={SearchEngines} exact />
+                </Switch>
+                <Footer></Footer>
+            </header> 
+            
+            </div>
+        </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
