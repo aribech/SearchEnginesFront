@@ -1,5 +1,17 @@
-.wrapper{width:100%; display:table;}
-.equal{display:table-cell;}
-.left{text-align:left;}
-.center{text-align:center;}
-.right{text-align:right;}
+.wrapper{
+    margin-top: 5rem;
+}
+
+.left{
+  
+    text-align: center;
+    background-color: #1B2731;
+    margin-right: 10px;
+    height: 4.5rem;
+}
+.center{
+    text-align:left;
+    background-color: #1B2731;
+    margin-right: 10px;
+    height: 4.5rem;
+}

@@ -5,11 +5,12 @@ import React from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import {ThemeProvider , createMuiTheme} from "@material-ui/core/styles";
 
-import {blue, grey} from "@material-ui/core/colors";
+import {blue} from "@material-ui/core/colors";
 import { NavBar } from './Navbar.js';
 import { Footer } from './Footer';
 import { Home } from './home';
 import { SearchEngines } from './SearchEngineList';
+import { NewSearchEngine } from './NewSearchEngine/NewSearchEngine';
 
 
 const theme = createMuiTheme({
@@ -35,7 +36,9 @@ function App() {
                 <NavBar></NavBar>
                 <Switch>
                     <Route path='/' component={Home} exact />
+                    <Route path='/Home' component={Home} exact />
                     <Route path='/SearchEngines' component={SearchEngines} exact />
+                    <Route path='/NewSearchEngine' component={NewSearchEngine} exact />
                 </Switch>
                 <Footer></Footer>
             </header> 

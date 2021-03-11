@@ -9,35 +9,22 @@ import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
-const useDivStyle = makeStyles(
-    {
-        root : {
-            backgroundColor: '#1B2731',
-            width:'1100px',
-            height:'80px',
-            marginBottom:'25px',
-            marginTop:'100px',
-            color:'white',
-            marginLeft:'1.5rem',
-        }
-    }
-)
-
-function DivAccueil()
+function Titre()
 {
-    const classes = useDivStyle();
-    return (<div className={classes.root} >
-                <Typography variant={"h5"}
+  
+    return (
+                <Typography variant={"subtitle1"}
                       style={
                             {
-                                fontSize: 40,
+                                fontSize: 30,
                                 paddingTop:10, 
-                                paddingLeft:6,
+                                paddingBottom:10,
+                                paddingLeft:10,
                             }
                         }
                 > GESTION DES MOTEURS DE RECHERCHE
                 </Typography>
-         </div>)
+            )
 
 }
 
@@ -56,34 +43,33 @@ const useDivBtnBack = makeStyles(
     }
 )
 
-function DivBackButton()
+function BackButton()
 {
     const classes = useDivBtnBack();
-    return (<div className={classes.root} >
+    return (
 
                 <Button
                       style={{
                           color: 'white',
-                          fontSize: 15
+                          fontSize: 20
                       }}
                       startIcon={<ArrowBackIosRoundedIcon />}
+                      href="/Home"
                     >
                         Back
                     </Button>
-
-             </div>)
+            )
 }
 
 
 const useButtonStyle = makeStyles(
     {
         root : {
-            //background : 'linear-gradient(45deg,#2F34FF,#F20320)',
-            border : 0,
-            borderRadius : 5,
+            
+            borderRadius : 10,
             color :'white',
-            fontSize: 20,
-            padding : '10px, 30px'
+            fontSize: 17.5,
+            textAlign:'left',
         }
     }
 )
@@ -91,7 +77,7 @@ const useButtonStyle = makeStyles(
 function ButtonCreateEngine()
 {
     const classes = useButtonStyle();
-    return <Button className={classes.root}  startIcon={<AddBoxIcon />} 
+    return <Button className={classes.root} href="/NewSearchEngine" startIcon={<AddBoxIcon />} 
                 variant="contained" color="primary"
             > CREER UN MOTEUR DE RECHERCHE</Button>
 }
@@ -104,14 +90,13 @@ export class SearchEngines extends Component
         return(
             <Container maxWidth="fluid"> 
                 <div class="wrapper" >
-
-                    <div class="equal left"> <DivBackButton /></div>
-                    <div class="equal center"><DivAccueil /></div>
-                    <div class="equal right"><ButtonCreateEngine /></div>
+                <Grid container>
+                    <Grid item xs={1}><div class=" left"> <BackButton /></div> </Grid>
+                    <Grid item xs={9}> <div class=" center"><Titre /></div> </Grid>
+                    <Grid item xs={2}><ButtonCreateEngine /></Grid>
+                </Grid>
                 </div>
-                   
-               
-            </Container>
+               </Container>
         )
     }
 }
