@@ -44,3 +44,12 @@
     color: darkslategray;
     text-align: start;
 }
+.previwDiv
+{
+    border-style: solid;
+    border-color: gray;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}

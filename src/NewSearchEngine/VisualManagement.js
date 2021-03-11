@@ -29,58 +29,149 @@ const GreenSwitch = withStyles((theme) => ({
   }))(Switch);
 
 
-  const FormontroluseStyles = makeStyles((theme) => ({
+  const PreviewUseStyles = makeStyles((theme) => ({
     root: {
-      '& .MuiTextField-root': {
         margin: theme.spacing(1),
-        width: '25ch',
-      },
+        width: '100%',
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '20ch',
+          },
     },
+    
   }));
 
-export function VisualManagement()
+function PreviewDiv()
 {
-    const classes = FormontroluseStyles();
+    const classes = PreviewUseStyles();
     return(
-        <div>
-            <p class="grayText">SLIDER D'IMAGES DE FOND</p>
-            <Grid container spacing={1}>
-                <FormControl className={classes.root} component="fieldset">
+        <div class="previwDiv">
+            <FormControl className={classes.root} component="fieldset">
                     <FormGroup aria-label="position" row>
-                        <Grid item xs={4}>
+                        
                                 <FormControlLabel id="labelForm"
                                     control={ <TextField
                                                 required
                                                 id="outlined-basic"
                                                 variant="outlined"
                                             /> }
-                                    label="NOM DU MOTEUR"
+                                    label="APERCU PC"
                                     labelPlacement="top"
                                 />
-                        </Grid>
-                        <Grid item xs={4}>
-                               <FormControlLabel id="labelForm"
-                                    control={<GreenSwitch  />}
-                                    label="MOTEUR ACTIVE"
-                                    labelPlacement="top"
-                                />
-                        </Grid>
-                        <Grid item xs={4}>
                                 <FormControlLabel id="labelForm"
                                     control={ <TextField
-                                                id="outlined-number"
+                                                required
+                                                id="outlined-basic"
                                                 variant="outlined"
-                                                type="number"
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
                                             /> }
-                                    label="ID MOTEUR"
+                                    label="APERCU MOBILE"
                                     labelPlacement="top"
                                 />
-                        </Grid>
+                                 
+                                  
                     </FormGroup>
-                </FormControl>
+            </FormControl>
+        </div>
+    )
+}
+
+const FormControluseStyles = makeStyles((theme) => ({
+    root: {
+        margin: theme.spacing(1),
+        width: '100%',
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '30ch',
+          },
+    },
+    
+  }));
+
+  function VisualForm()
+  {
+      const classes = FormControluseStyles();
+      return(
+          <div class="previwDiv">
+              <FormControl className={classes.root} component="fieldset">
+                      <FormGroup aria-label="position" row>
+                          
+                                  <FormControlLabel id="labelForm"
+                                      control={ <TextField
+                                                  required
+                                                  id="outlined-basic"
+                                                  variant="outlined"
+                                              /> }
+                                      label="URL IMAGES PC"
+                                      labelPlacement="top"
+                                  />
+                                  <FormControlLabel id="labelForm"
+                                      control={ <TextField
+                                                  required
+                                                  id="outlined-basic"
+                                                  variant="outlined"
+                                              /> }
+                                      label="LIEN PC"
+                                      labelPlacement="top"
+                                  />
+                        </FormGroup>
+                        <FormGroup aria-label="position" row>
+                          
+                                  <FormControlLabel id="labelForm"
+                                      control={ <TextField
+                                                  required
+                                                  id="outlined-basic"
+                                                  variant="outlined"
+                                              /> }
+                                      label="URL IMAGES MOBILE"
+                                      labelPlacement="top"
+                                  />
+                                  <FormControlLabel id="labelForm"
+                                      control={ <TextField
+                                                  required
+                                                  id="outlined-basic"
+                                                  variant="outlined"
+                                              /> }
+                                      label="LIEN MOBILE"
+                                      labelPlacement="top"
+                                  />
+                        </FormGroup>
+                        <FormGroup aria-label="position" row>
+                          
+                                  <FormControlLabel id="labelForm"
+                                      control={ <TextField
+                                                  required
+                                                  id="outlined-basic"
+                                                  variant="outlined"
+                                              /> }
+                                      label="ALT"
+                                      labelPlacement="top"
+                                  />
+                                  <FormControlLabel id="labelForm"
+                                      control={ <GreenSwitch /> }
+                                      label="OUVRIR DANS NOUVEL ONGLET"
+                                      labelPlacement="top"
+                                  />
+                                   <FormControlLabel id="labelForm"
+                                      control={ <GreenSwitch /> }
+                                      label="ACTIVE"
+                                      labelPlacement="top"
+                                  />
+                        </FormGroup>
+              </FormControl>
+          </div>
+      )
+  }
+  
+
+export function VisualManagement()
+{
+  
+    return(
+        <div>
+            <p class="grayText">SLIDER D'IMAGES DE FOND</p>
+            <Grid container  >
+                        <Grid item xs={3}><PreviewDiv /></Grid>
+                        <Grid item xs={9}> <VisualForm /> </Grid>
             </Grid>
         </div>
     )

@@ -8,6 +8,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { green } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from "@material-ui/core/Grid";
 
 const GreenSwitch = withStyles((theme) => ({
     switchBase: {
@@ -26,13 +27,16 @@ const GreenSwitch = withStyles((theme) => ({
     track: {},
   }))(Switch);
 
-const FormontroluseStyles = makeStyles((theme) => ({
+  const FormontroluseStyles = makeStyles((theme) => ({
     root: {
-      '& .MuiTextField-root': {
         margin: theme.spacing(1),
-        width: '25ch',
-      },
+        width: '100%',
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '25ch',
+          },
     },
+    
   }));
 
 export function GeneralInfosForm()
@@ -41,38 +45,44 @@ export function GeneralInfosForm()
     const classes = FormontroluseStyles();
     return <div class="generalInfosForm">
         <p class="grayText">MOTEUR DE RECHERCHE</p>
-        <div>
-            <FormControl className={classes.root} component="fieldset">
-                <FormGroup aria-label="position" row>
-               
-                            <FormControlLabel id="labelForm"
-                                control={ <TextField
-                                            required
-                                            id="outlined-basic"
-                                            variant="outlined"
-                                        /> }
-                                label="NOM DU MOTEUR"
-                                labelPlacement="top"
-                            />
-                            <FormControlLabel id="labelForm"
-                                control={<GreenSwitch  />}
-                                label="MOTEUR ACTIVE"
-                                labelPlacement="top"
-                            />
-                            <FormControlLabel id="labelForm"
-                                control={ <TextField
-                                            id="outlined-number"
-                                            variant="outlined"
-                                            type="number"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                        /> }
-                                label="ID MOTEUR"
-                                labelPlacement="top"
-                            />
-                </FormGroup>
-            </FormControl>
-        </div>
+       
+           <Grid container>
+           <FormControl className={classes.root} component="fieldset">
+                    <FormGroup aria-label="position" row>
+                        <Grid item xs={4}>
+                                <FormControlLabel id="labelForm"
+                                    control={ <TextField
+                                                required
+                                                id="outlined-basic"
+                                                variant="outlined"
+                                            /> }
+                                    label="NOM DU MOTEUR"
+                                    labelPlacement="top"
+                                />
+                        </Grid>
+                        <Grid item xs={4}>
+                               <FormControlLabel id="labelForm"
+                                    control={<GreenSwitch  />}
+                                    label="MOTEUR ACTIVE"
+                                    labelPlacement="top"
+                                />
+                        </Grid>
+                        <Grid item xs={4}>
+                                <FormControlLabel id="labelForm"
+                                    control={ <TextField
+                                                id="outlined-number"
+                                                variant="outlined"
+                                                type="number"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            /> }
+                                    label="ID MOTEUR"
+                                    labelPlacement="top"
+                                />
+                        </Grid>
+                    </FormGroup>
+                </FormControl>
+           </Grid>
     </div>
 }

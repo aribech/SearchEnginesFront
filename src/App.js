@@ -40,7 +40,7 @@ function App() {
                     <Route path='/SearchEngines' component={SearchEngines} exact />
                     <Route path='/NewSearchEngine' component={NewSearchEngine} exact />
                 </Switch>
-                <Footer></Footer>
+                
             </header> 
             
             </div>
