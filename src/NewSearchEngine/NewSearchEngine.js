@@ -14,6 +14,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 //files
 import {GeneralInfosForm} from './EngineGeneralnfos'
 import { VisualManagement } from "./VisualManagement";
+import { SearchManagement } from './SearchManagement';
 
 
 function Titre()
@@ -92,6 +93,7 @@ export class NewSearchEngine extends Component
           name: "New Search Engine",
           showHideGeneralInfo: true,
           showHideVisualManagement: false,
+          showHideSearchManagement: false,
         };
         this.hideComponent = this.hideComponent.bind(this);
       }
@@ -105,6 +107,9 @@ export class NewSearchEngine extends Component
           case "showHideVisualManagement":
             this.setState({ showHideVisualManagement: !this.state.showHideVisualManagement });
             break;
+          case "showHideSearchManagement":
+            this.setState({ showHideSearchManagement: !this.state.showHideSearchManagement });
+            break;
           default:
             this.setState({ showHideGeneralInfo: this.state.showHideGeneralInfo });;
         }
@@ -112,7 +117,7 @@ export class NewSearchEngine extends Component
     
     render()
     {
-        const { showHideGeneralInfo, showHideVisualManagement} = this.state;
+        const { showHideGeneralInfo, showHideVisualManagement,showHideSearchManagement} = this.state;
         return(
             <Container maxWidth="fluid"> 
                 <div class="wrapper" >
@@ -127,23 +132,39 @@ export class NewSearchEngine extends Component
                     <form  noValidate autoComplete="off">
                         <div class="secionHead">
                             <Button startIcon={<ExpandLessIcon />} 
-                                onClick={() => this.hideComponent("showHideGeneralInfo")}>
-                             | 
+                                onClick={() => this.hideComponent("showHideGeneralInfo")}
+                                style = {{fontSize:20, }}
+                                >
+                             | INFORMATIONS GENERALES
                             </Button>  
-                            INFORMATIONS GENERALES
+                            
                         </div>
 
                         { showHideGeneralInfo && <GeneralInfosForm /> }
 
                         <div class="secionHead">
                             <Button startIcon={<ExpandLessIcon />} 
-                                onClick={() => this.hideComponent("showHideVisualManagement")}>
-                             | 
+                                onClick={() => this.hideComponent("showHideVisualManagement")}
+                                style = {{fontSize:20, }}
+                                >
+                             | GESTION DU VISUEL
                             </Button>  
-                            GESTION DU VISUEL
+                            
                         </div>
 
                         { showHideVisualManagement && <VisualManagement /> }
+
+                        <div class="secionHead">
+                            <Button startIcon={<ExpandLessIcon />} 
+                                onClick={() => this.hideComponent("showHideSearchManagement")}
+                                style = {{fontSize:20, }}
+                                >
+                             | GESTION DES CRITERES DE RECHERCHE
+                            </Button>  
+                            
+                        </div>
+
+                        { showHideSearchManagement && <SearchManagement /> }
                    </form>
                </div>
             </Container>
