@@ -9,9 +9,11 @@ import {blue} from "@material-ui/core/colors";
 import { NavBar } from './Navbar.js';
 import { Footer } from './Footer';
 import { Home } from './home';
-import { SearchEngines } from './SearchEngineList';
+import  SearchEngines from './SearchEngineList';
 import { NewSearchEngine } from './NewSearchEngine/NewSearchEngine';
 
+import { store } from "./actions/store";
+import { Provider } from "react-redux";
 
 const theme = createMuiTheme({
     typography: {
@@ -28,6 +30,7 @@ const theme = createMuiTheme({
 function App() {
 
   return (
+    <Provider store={store}>
     <BrowserRouter>
         <ThemeProvider theme={theme}>
             <div className="App">
@@ -46,6 +49,7 @@ function App() {
             </div>
         </ThemeProvider>
     </BrowserRouter>
+    </Provider>
   );
 }
 
