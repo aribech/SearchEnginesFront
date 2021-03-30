@@ -1,41 +1,57 @@
-import { LaptopWindows } from "@material-ui/icons"
-import api from "./api"
+import { LaptopWindows } from "@material-ui/icons";
+import api from "./api";
 
 export const ACTION_TYPES = {
-    CREATE: 'CREATE',
-    UPDATE: 'UPDATE',
-    DELETE: 'DELETE',
-    FETCH_ALL: 'FETCH_ALL'
-}
-export const fetchAll = () => dispatch => {
-    api.engine().fetchAll()
-        .then(response => {
-            dispatch({
-                type: ACTION_TYPES.FETCH_ALL,
-                payload: response.data
-            })
-        })
-        .catch(err => console.log(err))
-}
-/*
-export const create = (data,onSuccess) => 
-{
-    console.log("hello");
-    console.log(data)
-}
-*/
+  CREATE: "CREATE",
+  UPDATE: "UPDATE",
+  DELETE: "DELETE",
+  FETCH_ALL: "FETCH_ALL",
+};
+export const fetchAll = () => (dispatch) => {
+  api
+    .engine()
+    .fetchAll()
+    .then((response) => {
+      dispatch({
+        type: ACTION_TYPES.FETCH_ALL,
+        payload: response.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
 export const create = (data, onSuccess) => {
-    console.log("heeeloooo from here")
-    api.engine().create(data)
-        .then(
-            response => { 
-                if(response.data.code==425)
-                {
-                    onSuccess("L'id que vous avez saisi non disponible")
-                }
-                console.log(response.data.message+" "+response.data.message)
-            }
-            //onSuccess()
-        )
-        .catch(err => console.log(err))
-}
+  api
+    .engine()
+    .create(data)
+    .then((response) => {
+      if (response.data.code == 425) {
+        onSuccess(response.data.message);
+      }
+      console.log(response.data.message + " " + response.data.message);
+    })
+    .catch((err) => console.log(err));
+};
+
+export const update = (code, data, onSuccess) => {
+  api
+    .engine()
+    .update(code, data)
+    .then((res) => {
+      if (res.data.code == 424) {
+        onSuccess(res.data.message);
+      }
+      console.log(res.data.message + " " + res.data.message);
+    })
+    .catch((err) => console.log(err));
+};
+
+export const Delete = (code, onSuccess) => {
+  console.log("test deletteeeeeeee");
+  api
+    .engine()
+    .delete(code)
+    .then((res) => {
+      onSuccess(res.data.message);
+    })
+    .catch((err) => console.log(err));
+};
