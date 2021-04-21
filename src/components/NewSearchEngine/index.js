@@ -1,24 +1,19 @@
 import React, { Component } from "react";
-import { useLocation, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import {
   Button,
-  Collapse,
   Container,
   Grid,
-  IconButton,
   TextField,
 } from "@material-ui/core";
 import {
   ArrowBackIosRounded as ArrowBackIosRoundedIcon,
-  Close as CloseIcon,
   Save as SaveIcon,
   Visibility as VisibilityIcon,
   ExpandLess as ExpandLessIcon,
   Delete as DeleteIcon,
   AddCircleOutline as AddCircleOutlineIcon,
 } from "@material-ui/icons";
-
-import Alert from "@material-ui/lab/Alert";
 
 import {
   ButtonBack,
@@ -235,7 +230,7 @@ export class NewSearchEngine extends Component {
   }
 
   validateName = () => {
-    if (this.state.values.name == "") {
+    if (this.state.values.name === "") {
       this.setState({
         errors: {
           ...this.state.errors,
@@ -259,7 +254,7 @@ export class NewSearchEngine extends Component {
         this.setState({
           values: {
             ...this.state.values,
-            name: event.target.value,
+            Name: event.target.value,
           },
         });
         break;
@@ -267,7 +262,7 @@ export class NewSearchEngine extends Component {
         this.setState({
           values: {
             ...this.state.values,
-            code: event.target.value,
+            Code: event.target.value,
           },
         });
         break;
@@ -400,25 +395,27 @@ export class NewSearchEngine extends Component {
         ...temp,
       },
     });
-    return Object.values(temp).every((x) => x == "");
+    return Object.values(temp).every((x) => x === "");
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.actionsType === "new") {
-      actions.create(this.state.values, (message) => {
+      let data=actions.create(this.state.values, (message) => {
         window.alert(message);
-      });
+      })();
+      console.log(data);
     } else if (this.state.actionsType === "update") {
-      actions.update(
+      let data =actions.update(
         this.state.engineCodeToUpdate,
         this.state.values,
         (message) => {
           window.alert(message);
         }
-      );
+      )();
+      console.log(data);
     }
-    this.setState({ values: { ...this.state.initialValues } });
+    //this.setState({ values: { ...this.state.initialValues } });
   };
 
   render() {
@@ -446,7 +443,7 @@ export class NewSearchEngine extends Component {
               </Grid>
               <Grid item xs={7}>
                 <PageTitle>
-                  EDITION D'UN MOTEUR DE RECHERCHE: {this.state.values.name}
+                  EDITION D'UN MOTEUR DE RECHERCHE: {this.state.values.Name}
                 </PageTitle>
               </Grid>
               <Grid item xs={2}>
@@ -491,7 +488,7 @@ export class NewSearchEngine extends Component {
                       name="Name"
                       variant="outlined"
                       fullWidth
-                      value={values.Name}
+                      value={this.state.values.Name}
                       onChange={this.handleInputChange}
                       {...(errors.name && {
                         error: true,
@@ -505,7 +502,7 @@ export class NewSearchEngine extends Component {
                     <GreenSwitch
                       id="isEnable"
                       name="isEnable"
-                      defaultChecked={values.isEnable}
+                      defaultChecked={this.state.values.isEnable}
                       onChange={this.handleInputChange}
                     />
                   </Grid>
@@ -517,7 +514,7 @@ export class NewSearchEngine extends Component {
                       name="Code"
                       variant="outlined"
                       fullWidth
-                      value={values.Code}
+                      value={this.state.values.Code}
                       onChange={this.handleInputChange}
                       {...(errors.code && {
                         error: true,

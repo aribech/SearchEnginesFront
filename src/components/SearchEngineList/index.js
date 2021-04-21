@@ -134,7 +134,7 @@ const SearchEngines = ({ EngineList, fetchAllEngines }) => {
           <StyledTableCell padding="checkbox">
             <Checkbox
               defaultChecked={
-                rowSelected == EngineList.length || allRowsSelected
+                rowSelected === EngineList.length || allRowsSelected
               }
               style={{ color: "white" }}
             />
@@ -207,10 +207,6 @@ const SearchEngines = ({ EngineList, fetchAllEngines }) => {
     }
   };
 
-  const renderRedirect = () => {
-    return <Redirect to="/NewSearchEngine" />;
-  };
-
   return (
     <Container maxWidth="fluid">
       {renderSearchEngineListHead()}
@@ -244,7 +240,7 @@ const SearchEngines = ({ EngineList, fetchAllEngines }) => {
               endIcon={<DeleteIcon />}
               onClick={handleOpen}
               variant="contained"
-              disabled={rowSelected == 0}
+              disabled={rowSelected === 0}
             >
               Supprimer les moteurs selectionés
             </DeleteButton>
@@ -254,11 +250,11 @@ const SearchEngines = ({ EngineList, fetchAllEngines }) => {
               open={open}
             >
               <DTitle id="customized-dialog-title" onClose={handleClose}>
-                SUPPRESSION DE {codesToDelete}
+                SUPPRESSION DE MOTEUR(S)
               </DTitle>
               <DContent dividers>
                 <Typography gutterBottom>
-                  CONFIRMER-VOUS LA SUPPRESSION DE {enginesNameToDelete} ?
+                  CONFIRMER-VOUS LA SUPPRESSION DE {enginesNameToDelete.join(",")} ?
                 </Typography>
               </DContent>
               <DActions>
@@ -338,7 +334,7 @@ const SearchEngines = ({ EngineList, fetchAllEngines }) => {
                     );
                   })}
                 {isNilOrEmpty(EngineList) && (
-                  <StyledTableCell align="center" colSpan="6">
+                  <StyledTableCell align="center" colSpan="7">
                     Aucun resultat
                   </StyledTableCell>
                 )}

@@ -1,4 +1,4 @@
-import { LaptopWindows } from "@material-ui/icons";
+
 import api from "./api";
 
 export const ACTION_TYPES = {
@@ -24,7 +24,7 @@ export const create = (data, onSuccess) => {
     .engine()
     .create(data)
     .then((response) => {
-      if (response.data.code == 425) {
+      if (response.data.code === 425) {
         onSuccess(response.data.message);
       }
       console.log(response.data.message + " " + response.data.message);
@@ -32,15 +32,19 @@ export const create = (data, onSuccess) => {
     .catch((err) => console.log(err));
 };
 
-export const update = (code, data, onSuccess) => {
+export const update = (code, data, onSuccess) => (dispatch) =>{
   api
     .engine()
     .update(code, data)
     .then((res) => {
-      if (res.data.code == 424) {
+      if (res.data.code === 424) {
         onSuccess(res.data.message);
       }
       console.log(res.data.message + " " + res.data.message);
+      dispatch({
+        type: ACTION_TYPES.UPDATE,
+        payload: res.data,
+      });
     })
     .catch((err) => console.log(err));
 };
